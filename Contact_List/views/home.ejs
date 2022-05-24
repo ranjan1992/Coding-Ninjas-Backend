@@ -4,6 +4,15 @@
   </head>
   <body>
     <h1>My Contacts List</h1>
-    <p>Rendered from EJS View !</p>
+    <div>
+      <ul>
+        <% for (let i of contact_list){%>
+        <li>
+          <p><%= i.name %></p>
+          <p><%= i.phone %></p>
+        </li>
+        <%} %>
+      </ul>
+    </div>
   </body>
 </html>
