@@ -27,6 +27,13 @@ app.get('/', function (req, res) {
   });
 });
 
+app.get('/practise', function (req, res) {
+  return res.send('<h1>This is a Practise session</h1>');
+});
+
+app.post('/create-contact', function (req, res) {
+  return res.redirect('/practise');
+});
 app.listen(port, function (err) {
   if (err) {
     console.log('Error in running the server ', err);
