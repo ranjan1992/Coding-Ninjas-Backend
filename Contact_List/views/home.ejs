@@ -1,31 +1,60 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title%></title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+      integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <link rel="stylesheet" href="/css/home.css" />
   </head>
   <body>
-    <h1>My Contacts List</h1>
-    <div>
+    <h1 id="page-heading">
+      <i class="fas fa-address-book"></i>
+      Contacts List
+    </h1>
+    <div id="contacts-list-container">
       <ul>
-        <% for (let i of contact_list){%>
-        <li>
-          <div>
-            <p><%= i.name %></p>
-            <p><%= i.phone %></p>
-          </div>
-          <div>
-            <a href="/delete-contact/?id=<%= i._id %>">Del</a>
-          </div>
-        </li>
-        <%} %>
+        <% for(let i of contact_list){%>
+        <div class="contact">
+          <li class="contacts">
+            <div class="details">
+              <p><%= i.name %></p>
+              <p><%= i.phone %></p>
+            </div>
+            <div class="delete-button">
+              <a href="/delete-contact/?id=<%= i._id %>">
+                <i class="fas fa-window-close fa-2x"></i>
+              </a>
+            </div>
+          </li>
+        </div>
+        <%}%>
       </ul>
     </div>
-    <form action="/create-contact" method="POST">
-      <input type="text" name="name" placeholder="Enter Name" />
-      <input type="number" name="phone" placeholder="Enter Phone" />
+    <div class="form">
+      <form action="/create-contact " method="POST">
+        <input type="text" name="name" placeholder="Enter Name" />
+        <input type="number" name="phone" placeholder="Enter Phone Number" />
 
-      <button type="submit">Add Contacts</button>
-    </form>
-    <script src="/js/home.js" type="text/javascript"></script>
+        <button type="submit">Add Contact</button>
+      </form>
+    </div>
+    <script src="/js/home.js"></script>
   </body>
 </html>
+
+<!-- Form Field ---->
+<!-- submit ----->
+<!-- action route ----->
+<!-- redirected--- -->
+
+<!-- Body Parser : Added data {name: ____ phone: _____ } encoded 
+as body: {name: _____ phone: _____} -->

@@ -1,3 +1,70 @@
 body {
+  margin: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+#page-heading {
   text-align: center;
+  margin-top: 25px;
+  color: grey;
+}
+
+#contacts-list-container ul li {
+  text-align: center;
+}
+
+#contacts-list-container ul {
+  list-style: none;
+  display: flex;
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+}
+
+.contacts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.details {
+  /* background-color: rgb(71, 49, 19); */
+  padding: 1rem;
+  background-color: rgb(81, 88, 88);
+  color: aliceblue;
+  border-radius: 1rem 0rem 0rem 1rem;
+}
+.delete-button a i {
+  height: 6rem;
+  width: 4rem;
+  background-color: rgb(124, 119, 119, 0.2);
+  color: rgb(252, 9, 9);
+  text-align: center;
+  border-radius: 0rem 1rem 1rem 0rem;
+  padding: 0.6rem;
+  box-shadow: 0 0 10px 5px rgb(185, 167, 167, 0.4);
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  background-color: bisque;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+}
+
+button {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  outline: none;
 }
