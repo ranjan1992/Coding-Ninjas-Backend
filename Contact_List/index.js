@@ -11,18 +11,19 @@ app.use(
     extended: true,
   })
 );
+app.use(express.static('assets'));
 
-//middleware 1
-app.use(function (req, res, next) {
-  console.log('Middleware 1 called');
-  next();
-});
+// //middleware 1
+// app.use(function (req, res, next) {
+//   console.log('Middleware 1 called');
+//   next();
+// });
 
-//middleware 2
-app.use(function (req, res, next) {
-  console.log('Middleware 2 called');
-  next();
-});
+// //middleware 2
+// app.use(function (req, res, next) {
+//   console.log('Middleware 2 called');
+//   next();
+// });
 
 var contactList = [
   {
