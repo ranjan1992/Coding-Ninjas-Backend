@@ -1,6 +1,8 @@
 const express = require('express');
 const port = 8000;
 const path = require('path');
+const db = require('./config/mongoose');
+const Contact = require('./models/contact');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -40,26 +42,47 @@ var contactList = [
   },
 ];
 app.get('/', function (req, res) {
-  return res.render('home', {
-    title: 'My Contacts List',
-    contact_list: contactList,
+  Contact.find({}, function (err, contacts) {
+    if (err) {
+      console.log('Error in fetching contacts from the db');
+      return;
+    }
+    return res.render('home', {
+      title: 'My Contacts List',
+      contact_list: contacts,
+    });
   });
 });
 
-app.get('/delete-contact/', function (req, res) {
-  console.log(req.query);
+app.get('/delete-contact', function (req, res) {
+  // get the id from query in the ul
+  let id = req.query.id;
 
-  let contactIndex = contactList.findIndex((contact) => contact.phone == phone);
-  if (contactIndex != -1) {
-    contactList.splice(contactIndex, 1);
-  }
+  //find the contact in the database using the id and delete
+  Contact.findByIdAndDelete(id, function (err) {
+    if (err) {
+      console.log('Error in deleting an Object from database');
+      return;
+    }
+  });
   return res.redirect('back');
 });
 
 app.post('/create-contact', function (req, res) {
-  contactList.push(req.body);
-  return res.redirect('/');
+  Contact.create(
+    { name: req.body.name, phone: req.body.phone },
+    function (err, newContact) {
+      if (err) {
+        console.log('error in creating a contact :', err);
+        return;
+      }
+
+      console.log('*****', newContact);
+      return res.redirect('back');
+    }
+  );
 });
+
 app.listen(port, function (err) {
   if (err) {
     console.log('Error in running the server ', err);
