@@ -9,8 +9,13 @@
       <ul>
         <% for (let i of contact_list){%>
         <li>
-          <p><%= i.name %></p>
-          <p><%= i.phone %></p>
+          <div>
+            <p><%= i.name %></p>
+            <p><%= i.phone %></p>
+          </div>
+          <div>
+            <a href="/delete-contact/?phone=<%= i.phone %>">Del</a>
+          </div>
         </li>
         <%} %>
       </ul>

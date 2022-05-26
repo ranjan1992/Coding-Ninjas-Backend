@@ -46,8 +46,14 @@ app.get('/', function (req, res) {
   });
 });
 
-app.get('/practise', function (req, res) {
-  return res.send('<h1>This is a Practise session</h1>');
+app.get('/delete-contact/', function (req, res) {
+  console.log(req.query);
+
+  let contactIndex = contactList.findIndex((contact) => contact.phone == phone);
+  if (contactIndex != -1) {
+    contactList.splice(contactIndex, 1);
+  }
+  return res.redirect('back');
 });
 
 app.post('/create-contact', function (req, res) {
