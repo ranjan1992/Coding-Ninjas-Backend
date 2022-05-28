@@ -11,3 +11,11 @@ module.exports.signIn = function (req, res) {
     title: 'Codiel | SignIn',
   });
 };
+
+module.exports.create = function (req, res) {
+  //To Do
+};
+
+module.exports.createSession = function (req, res) {
+  //TO DO later
+};
