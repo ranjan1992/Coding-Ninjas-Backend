@@ -8,7 +8,7 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
-
+const MongoStore = require('connect-mongo');
 app.use(express.static('./assets'));
 
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +32,10 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 100,
     },
+    store: new MongoStore({
+      client: db.getClient(),
+      collectionName: 'sessions',
+    }),
   })
 );
 
