@@ -1,28 +1,19 @@
 <html>
-    <head>
-        <title>
-            <%= title  %>
-        </title>
-        <link rel="stylesheet" href="/css/layout.css">
-        <link rel="stylesheet" href="/css/header.css">
-        <link rel="stylesheet" href="/css/footer.css">
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
 
-        <%- style %>
-        
-    </head>
+    <%- style %>
+  </head>
 
-    <body>
-        <%- include('_header'); %>
-        
-        <main id="layout-main">
-            <%- body %>
+  <body>
+    <%- include('_header'); %> <% if(flash.success && flash.success.length>0){%>
+    <h5><%= flash.success %></h5>
+    <%}%>
+    <main id="layout-main"><%- body %></main>
 
-        </main>
-
-
-        <%- include('_footer'); %>
-
-        <%- script %>
-        
-    </body>
+    <%- include('_footer'); %> <%- script %>
+  </body>
 </html>
