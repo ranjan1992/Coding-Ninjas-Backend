@@ -6,7 +6,7 @@ module.exports.create = function (req, res) {
       content: req.body.content,
       user: req.user._id,
     },
-    function (err, post) {
+    function (err) {
       if (err) {
         console.log('Error in creating a post');
         return;
