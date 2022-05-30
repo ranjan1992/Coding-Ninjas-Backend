@@ -27,7 +27,7 @@ module.exports.destroy = function (req, res) {
         return res.redirect('back');
       });
     } else {
-      return res.redirect('backs');
+      return res.redirect('back');
     }
   });
 };
