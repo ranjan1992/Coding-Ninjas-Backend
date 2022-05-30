@@ -12,9 +12,11 @@ module.exports.profile = function (req, res) {
 module.exports.update = function (req, res) {
   if (req.user.id == req.params.id) {
     User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
+      req.flash('success', 'Updated!');
       return res.redirect('back');
     });
   } else {
+    req.flash('error', 'Unauthorized');
     return res.status(401).send('Unauthorized');
   }
 };
@@ -43,6 +45,7 @@ module.exports.signIn = function (req, res) {
 // get the sign up data
 module.exports.create = function (req, res) {
   if (req.body.password != req.body.confirm_password) {
+    req.flash('error', 'Passwords do not match');
     return res.redirect('back');
   }
 
@@ -78,7 +81,7 @@ module.exports.destroySession = function (req, res) {
     if (err) {
       return next(err);
     }
-    req.flash('success', 'You have logged out');
+    req.flash('success', 'You have logged out !');
     res.redirect('/');
   });
 };
