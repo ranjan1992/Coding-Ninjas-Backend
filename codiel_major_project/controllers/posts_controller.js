@@ -38,6 +38,7 @@ module.exports.destroy = async function (req, res) {
         return res.status(200).json({
           data: {
             post_id: req.params.id,
+            post: post,
           },
           message: 'Post deleted',
         });
