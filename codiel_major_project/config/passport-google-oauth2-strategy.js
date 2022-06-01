@@ -11,7 +11,7 @@ passport.use(
       clientID:
         '502281796308-l8ke9r2e8qdn6c95jvbcod62f72cf3q3.apps.googleusercontent.com',
       clientSecret: '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',
-      callbackURL: 'http://localhost/users/auth/google/callback',
+      callbackURL: 'http://localhost:8000/users/auth/google/callback',
     },
     function (accessToken, refreshToken, profile, done) {
       // find a user
