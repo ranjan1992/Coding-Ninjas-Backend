@@ -4,22 +4,25 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 
 const User = require('../models/user');
 
-var opts = {};
-opts.jwtFromRequest = ExtractJWT.fromAuthHeaderWithScheme('jwt');
-opts.secretOrKey = 'codiel';
-passport.use(
-  new JWTStrategy(opts, function (jwt_payload, done) {
-    User.findOne({ id: jwt_payload.id }, function (err, user) {
-      if (err) {
-        return done(err, false);
-      }
-      if (user) {
-        done(null, user);
-      } else {
-        done(null, false);
-        // or you could create a new account
-      }
-    });
-  })
-);
+
+let opts = {
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+    secretOrKey: 'codeial'
+}
+
+
+passport.use(new JWTStrategy(opts, function(jwtPayLoad, done){
+
+    User.findById(jwtPayLoad._id, function(err, user){
+        if (err){console.log('Error in finding user from JWT'); return;}
+
+        if (user){
+            return done(null, user);
+        }else{
+            return done(null, false);
+        }
+    })
+
+}));
+
 module.exports = passport;
